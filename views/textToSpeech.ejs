@@ -22,12 +22,15 @@
 			    cursor:pointer;
 			    border-radius: 5px;
 			}
+			#text-to-speech {
+				text-align:justify;
+			}
 		</style>
 		<title>Pure JavaScript Text to Audio</title>
 	</head>
 	<body>
 	    <h2>JavaScript Text to Speech</h2>
-		<div><input type="text" id="text-to-speech" placeholder="Enter text to speak..."/></div>
+		<div><p id="text-to-speech"><%= textToBeSummarized %></p></div>
         <div><button type="button" id="speak">Speak</button></div>
         <br/>
         <div><small><b>NOTE:</b> Enter text and click on speak button.</small></div>
