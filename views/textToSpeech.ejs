@@ -44,11 +44,17 @@
     
     speech.text = msg;
     speech.volume = 1;
-    speech.rate = 1;
+    speech.rate = 0.85;
     speech.pitch = 1;
-    
-	window.speechSynthesis.speak(speech);
+
+	let synth = window.speechSynthesis;
+	synth.speak(speech);
 	console.log("test");
+	var r = setInterval(function () {
+                console.log(synth.speaking);
+                if (!synth.speaking) clearInterval(r);
+                else synth.resume();
+            }, 14000);
 }) 
 		</script>
 	</body>
