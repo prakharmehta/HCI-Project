@@ -1,2 +1,8 @@
 # HCI-Project
-J - Component for HCI
+
+Features:
+Text Sumarization
+Text to Speech
+
+
+Developed by: [Prakhar Mehta](https://github.com/prakharmehta)
