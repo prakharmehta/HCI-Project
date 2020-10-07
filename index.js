@@ -2,7 +2,8 @@ const express = require("express");
 const { spawn } = require("child_process");
 const translate = require("google-translate-api");
 const path = require("path");
-
+const bodyParser = require("body-parser");
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const app = express();
 const port = 3000;
 
@@ -12,33 +13,23 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-  translate("I spea Dutch!", { from: "en", to: "nl" })
-    .then((res) => {
-      console.log(res.text);
-      //=> Ik spreek Nederlands!
-      console.log(res.from.text.autoCorrected);
-      //=> true
-      console.log(res.from.text.value);
-      //=> I [speak] Dutch!
-      console.log(res.from.text.didYouMean);
-      //=> false
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  res.render("monumentSearch");
 });
 
-app.get("/tts", (req, res) => {
+app.post("/tts", urlencodedParser, (req, res) => {
+  // if(!req.body) return res.
   let dataToSend;
   // spawn new child process to call the python script
   const python = spawn("python", [
     "./public/scripts/text_summarization.py",
-    req.query.filename,
+    req.body.monument,
   ]);
   // collect data from script
   python.stdout.on("data", function (data) {
     console.log("Pipe data from python script ...");
     dataToSend = data.toString();
+
+
     console.log(dataToSend);
     res.render("textToSpeech", {
       textToBeSummarized: dataToSend,
@@ -50,5 +41,9 @@ app.get("/tts", (req, res) => {
     console.log(`child process close all stdio with code ${code}`);
   });
 });
+
+app.get('/arModel', (req, res) => {
+  res.render("arModel");
+})
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

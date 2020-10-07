@@ -19,9 +19,12 @@ import re
 
 # In[3]:
 
-if(sys.argv[1] == "Taj Mahal"):
-    filename = "/home/prakharnmehta/Documents/Projects/HCI-Project/models/New Text Document.txt"
-
+if(sys.argv[1].lower().lstrip() == "taj mahal"):
+    filename = "/home/prakharnmehta/Documents/Projects/HCI-Project/models/Taj Mahal.txt"
+elif(sys.argv[1].lower().lstrip() == "machu pichu"):
+    filename = "/home/prakharnmehta/Documents/Projects/HCI-Project/models/Machu Pichu.txt"
+elif(sys.argv[1].lower().lstrip() == "christ the redeemer"):
+    filename = "/home/prakharnmehta/Documents/Projects/HCI-Project/models/Christ the Redeemer.txt"
 f=open(filename, "r")
 
 
