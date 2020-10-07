@@ -25,3 +25,7 @@ button {
 #text-to-speech {
     text-align: justify;
 }
+
+#speak, #toggle, #stop {
+    display: inline;
+}
