@@ -16,16 +16,43 @@ app.get("/", (req, res) => {
   res.render("monumentSearch");
 });
 
-app.post("/tts", urlencodedParser, (req, res) => {
+app.post("/tts", urlencodedParser, async (req, res) => {
   // if(!req.body) return res.
+  let textToTranslate
+  if (req.body.monument.toString().toLowerCase() == 'taj mahal') {
+    textToTranslate = "./models/Taj_Mahal.txt"
+  }
+  else if (req.body.monument.toString().toLowerCase() == 'machu pichu') {
+    textToTranslate = "./models/Machu_Pichu.txt"
+  }
+  else if (req.body.monument.toString().toLowerCase() == 'christ the redeemer') {
+    textToTranslate = "./models/Christ_the_Redeemer.txt"
+  }
+  console.log(textToTranslate);
+  console.log(req.body.languages.split("-")[0]);
+
+  const python1 = await spawn("python", [
+    "./public/scripts/textTranslation.py",
+    textToTranslate, req.body.languages.split("-")[0]
+  ]);
+  let translatedText
+  let translatedTextURI = "./models/translationOutput/translatedText.txt"
+  await python1.stdout.on("data", (data) => {
+    console.log("Pipe data from python script ...");
+    translatedText = data.toString();
+  })
+
+  // console.log(req.body.languages);
   let dataToSend;
   // spawn new child process to call the python script
-  const python = spawn("python", [
+  const python2 = await spawn("python", [
     "./public/scripts/text_summarization.py",
-    req.body.monument,
+    translatedTextURI
   ]);
+
+
   // collect data from script
-  python.stdout.on("data", function (data) {
+  python2.stdout.on("data", function (data) {
     console.log("Pipe data from python script ...");
     dataToSend = data.toString();
 
@@ -33,11 +60,12 @@ app.post("/tts", urlencodedParser, (req, res) => {
     console.log(dataToSend);
     res.render("textToSpeech", {
       textToBeSummarized: dataToSend,
+      languageCode: req.body.languages
     });
   });
-  python.stderr.on("data", (data) => console.log(data.toString()));
+  python2.stderr.on("data", (data) => console.log(data.toString()));
   // in close event we are sure that stream from child process is closed
-  python.on("close", (code) => {
+  python2.on("close", (code) => {
     console.log(`child process close all stdio with code ${code}`);
   });
 });

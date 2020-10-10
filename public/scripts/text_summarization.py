@@ -19,13 +19,8 @@ import re
 
 # In[3]:
 
-if(sys.argv[1].lower().lstrip() == "taj mahal"):
-    filename = "/home/prakharnmehta/Documents/Projects/HCI-Project/models/Taj Mahal.txt"
-elif(sys.argv[1].lower().lstrip() == "machu pichu"):
-    filename = "/home/prakharnmehta/Documents/Projects/HCI-Project/models/Machu Pichu.txt"
-elif(sys.argv[1].lower().lstrip() == "christ the redeemer"):
-    filename = "/home/prakharnmehta/Documents/Projects/HCI-Project/models/Christ the Redeemer.txt"
-f=open(filename, "r")
+
+f=open(sys.argv[1], "r")
 
 
 # In[4]:
@@ -85,12 +80,13 @@ s=sent_tokenize(sentence)
 
 
 word_embeddings = {}
-f = open(filename, "r")
+f = open(sys.argv[1], "r")
 for line in f:
     values = line.split()
     word = values[0]
     coefs = np.asarray(values[1:])
     word_embeddings[word] = coefs
+    
 f.close()
 
 

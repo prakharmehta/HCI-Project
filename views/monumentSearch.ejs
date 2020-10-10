@@ -7,9 +7,50 @@
 </head>
 
 <body>
+    <% var langs =
+    [['Afrikaans',       ['af-ZA']],
+     ['Bahasa Indonesia',['id-ID']],
+     ['Bahasa Melayu',   ['ms-MY']],
+     ['Català',          ['ca-ES']],
+     ['Čeština',         ['cs-CZ']],
+     ['Deutsch',         ['de-DE']],
+     ['English',         ['en-GB']],
+     ['Español',         ['es-ES']],
+     ['Euskara',         ['eu-ES']],
+     ['Français',        ['fr-FR']],
+     ['Galego',          ['gl-ES']],
+     ['Hrvatski',        ['hr_HR']],
+     ['IsiZulu',         ['zu-ZA']],
+     ['Íslenska',        ['is-IS']],
+     ['Italiano',        ['it-IT']],
+     ['Magyar',          ['hu-HU']],
+     ['Nederlands',      ['nl-NL']],
+     ['Norsk bokmål',    ['nb-NO']],
+     ['Polski',          ['pl-PL']],
+     ['Português',       ['pt-PT']],
+     ['Română',          ['ro-RO']],
+     ['Slovenčina',      ['sk-SK']],
+     ['Suomi',           ['fi-FI']],
+     ['Svenska',         ['sv-SE']],
+     ['Türkçe',          ['tr-TR']],
+     ['български',       ['bg-BG']],
+     ['Pусский',         ['ru-RU']],
+     ['Српски',          ['sr-RS']],
+     ['한국어',            ['ko-KR']],
+     ['中文',             ['cmn-Hans-CN']],
+     ['日本語',           ['ja-JP']],
+     ['Lingua latīna',   ['la']]];
+     %>
     <form action="/tts" method="POST">
         <input name="monument" type="text" placeholder="Enter the name of the monument" />
         <input type="submit" />
+        <select name="languages" id="language">
+            <option value="">Select Language</option>
+            <% langs.map((language) => { %>
+            <option value="<%= language[1][0] %>"><%= language[0] %></option>
+            <% })%>
+
+        </select>
     </form>
 </body>
 
