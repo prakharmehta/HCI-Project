@@ -1,6 +1,6 @@
 const express = require("express");
 const { spawn } = require("child_process");
-const translate = require("google-translate-api");
+// const translate = require("google-translate-api");
 const path = require("path");
 const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
