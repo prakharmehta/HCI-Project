@@ -5,7 +5,7 @@ let msg = document.getElementById("text-to-speech").innerText;
 let speech = new SpeechSynthesisUtterance();
 
 const languages = new Map()
-speech.lang = "en-IN";
+speech.lang = "fr-FR";
 
 speech.text = msg;
 speech.volume = 1;

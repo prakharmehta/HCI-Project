@@ -1,16 +1,265 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Monument Search</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 
 <body>
-    <form action="/tts" method="POST">
-        <input name="monument" type="text" placeholder="Enter the name of the monument" />
-        <input type="submit" />
-    </form>
+    <% var langs =
+    [['Afrikaans',       ['af-ZA']],
+     ['Bahasa Indonesia',['id-ID']],
+     ['Bahasa Melayu',   ['ms-MY']],
+     ['Català',          ['ca-ES']],
+     ['Čeština',         ['cs-CZ']],
+     ['Deutsch',         ['de-DE']],
+     ['English',         ['en-GB']],
+     ['Español',         ['es-ES']],
+     ['Euskara',         ['eu-ES']],
+     ['Français',        ['fr-FR']],
+     ['Galego',          ['gl-ES']],
+     ['Hrvatski',        ['hr_HR']],
+     ['IsiZulu',         ['zu-ZA']],
+     ['Íslenska',        ['is-IS']],
+     ['Italiano',        ['it-IT']],
+     ['Magyar',          ['hu-HU']],
+     ['Nederlands',      ['nl-NL']],
+     ['Norsk bokmål',    ['nb-NO']],
+     ['Polski',          ['pl-PL']],
+     ['Português',       ['pt-PT']],
+     ['Română',          ['ro-RO']],
+     ['Slovenčina',      ['sk-SK']],
+     ['Suomi',           ['fi-FI']],
+     ['Svenska',         ['sv-SE']],
+     ['Türkçe',          ['tr-TR']],
+     ['български',       ['bg-BG']],
+     ['Pусский',         ['ru-RU']],
+     ['Српски',          ['sr-RS']],
+     ['한국어',            ['ko-KR']],
+     ['中文',             ['cmn-Hans-CN']],
+     ['日本語',           ['ja-JP']],
+     ['Lingua latīna',   ['la']]];
+     %>
+    <nav class="white" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="#" class="brand-logo">Logo</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#monument-search-section">Monuments</a></li>
+            </ul>
+
+            <ul id="nav-mobile" class="sidenav">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#monument-search-section">Monuments</a></li>
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+
+    <div id="index-banner" class="parallax-container">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <br><br>
+                <h1 class="header center teal-text text-lighten-2">Monument Search</h1>
+                <div class="row center">
+                    <h5 class="header col s12 light">Around the World just with the help of a click
+                    </h5>
+                </div>
+                <div class="row center">
+                    <a href="#monument-search-section" id="download-button"
+                        class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
+                </div>
+                <br><br>
+
+            </div>
+        </div>
+        <div class="parallax"><img src="img/colosseum.jpg" alt="Unsplashed background img 1"></div>
+    </div>
+
+
+    <div class="container" id="features">
+        <div class="section">
+
+            <!--   Icon Section   -->
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="icon-block">
+                        <h2 class="center brown-text"><i class="material-icons">short_text</i></h2>
+                        <h5 class="center">Text Summarization</h5>
+
+                        <p class="light">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus aliquam vero incidunt
+                            similique? Cupiditate exercitationem eum expedita laborum nobis nesciunt voluptates hic
+                            cumque? Fugit vel quos ducimus quae labore saepe.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col s12 m6">
+                    <div class="icon-block">
+                        <h2 class="center brown-text"><i class="material-icons">translate</i></h2>
+                        <h5 class="center">Multi-lingual</h5>
+
+                        <p class="light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis necessitatibus
+                            maiores corporis, minus veritatis alias ab expedita eveniet dolore, perspiciatis recusandae
+                            ipsam! Corporis tempora qui dolorem velit excepturi illum ab.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col s12 m6">
+                    <div class="icon-block">
+                        <h2 class="center brown-text"><i class="material-icons">graphic_eq</i></h2>
+                        <h5 class="center">Text to Speech</h5>
+
+                        <p class="light">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi doloremque
+                            cupiditate dicta, illum at, officiis esse a magnam voluptates nesciunt nostrum, recusandae
+                            deserunt voluptatibus harum debitis soluta itaque odio tempora.</p>
+                    </div>
+                </div>
+
+                <div class="col s12 m6">
+                    <div class="icon-block">
+                        <h2 class="center brown-text"><i class="material-icons">3d_rotation</i></h2>
+                        <h5 class="center">Augmented Reality</h5>
+
+                        <p class="light">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore alias saepe
+                            voluptate ipsum commodi eos enim nobis ullam! Maxime minus pariatur ut corporis nemo. Hic
+                            repellat sint corporis at fugiat!</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="parallax-container valign-wrapper">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <div class="row center">
+                    <h5 class="header col s12 light">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <div class="parallax"><img src="img/taj_mahal.jpg" alt="Unsplashed background img 2"></div>
+    </div>
+
+
+
+    <div class="container" id="monument-search-section">
+        <div class="section">
+
+            <div class="container">
+                <div class="center">
+                    <h4>Where do you want to visit?</h4>
+                </div>
+                <div class="row">
+                    <form class="col s12  center" action="/tts" method="POST">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <!-- <i class="material-icons prefix">tour</i> -->
+                                <input name="monument" type="text" id="monument-name" required />
+                                <label for="monument-name">Monument</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m12">
+                                <!-- <i class="material-icons prefix">translate</i> -->
+                                <select name="languages" id="language" class="icons" required>
+                                    <option value="" disabled selected>Select Language</option>
+                                    <% langs.map((language) => { %>
+                                    <option value="<%= language[1][0] %>"><%= language[0] %></option>
+                                    <% })%>
+
+                                </select>
+                                <label>Languages</label>
+                            </div>
+                        </div>
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <div class="parallax-container valign-wrapper">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <div class="row center">
+                    <h5 class="header col s12 light">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <div class="parallax"><img src="img/christ.jpg" alt="Unsplashed background img 3"></div>
+    </div>
+
+    <footer class="page-footer teal">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Company Bio</h5>
+                    <p class="grey-text text-lighten-4">We are a team of college students working on this project like
+                        it's our
+                        full time job. Any amount would help support and continue development on this project and is
+                        greatly
+                        appreciated.</p>
+
+
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Settings</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Connect</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Made by Anukrati, Shivang, Prakhar, Sarthak
+            </div>
+        </div>
+    </footer>
+
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="scripts/materialize.js"></script>
+    <script src="scripts/init.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('select').formSelect();
+        });
+    </script>
 </body>
 
 </html>

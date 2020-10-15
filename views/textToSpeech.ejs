@@ -1,21 +1,87 @@
 <!doctype html>
 
 <head>
-	<title>Pure JavaScript Text to Audio</title>
-	<link rel="stylesheet" href="../css/styles.css">
+	<title></title>
+	<!-- <link rel="stylesheet" href="../css/styles.css"> -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
 
 <body>
-	<h2>JavaScript Text to Speech</h2>
-	<div>
-		<p id="text-to-speech"><%= textToBeSummarized %></p>
+	<div class="container">
+		<h2>Text to Speech</h2>
+		<div>
+			<p id="text-to-speech" class="flow-text"><%= textToBeSummarized %></p>
+		</div>
+		<div class="row">
+			<div class="col s3"><button class="waves-effect waves-light btn" type="button" id="speak">Speak</button>
+			</div>
+			<div class="col s3"><button class="waves-effect waves-light btn blue accent-2" id="toggle"><i
+						class="material-icons left">play_arrow</i> /
+					<i class="material-icons right">pause</i></button></div>
+			<div class="col s3"><button class="waves-effect waves-light btn red lighten-1" id="stop">Stop</button></div>
+		</div>
+
+		<br />
+		<!-- <div><small><b>NOTE:</b> Enter text and click on speak button.</small></div> -->
+		<span>Language: <span id="language-code"><%= languageCode %></span></span>
 	</div>
-	<div><button type="button" id="speak">Speak</button></div>
-	<div><button id="toggle">>/||</button></div>
-	<div><button id="stop">Stop</button></div>
-	<br />
-	<div><small><b>NOTE:</b> Enter text and click on speak button.</small></div>
-	<script src="/scripts/tts.js">
+
+	<script>
+		/* JS comes here */
+		let isSpeaking = false;
+		let msg = document.getElementById("text-to-speech").innerText;
+
+		let speech = new SpeechSynthesisUtterance();
+
+		const languages = new Map()
+		speech.lang = document.getElementById("language-code").innerText;
+
+		speech.text = msg;
+		speech.volume = 1;
+		speech.rate = 0.9;
+		speech.pitch = 1;
+
+		let synth = window.speechSynthesis;
+
+		window.addEventListener("load", () => {
+			synth.pause();
+			synth.cancel();
+		});
+
+		document.getElementById("speak").addEventListener("click", () => {
+			synth.pause();
+			synth.cancel();
+			synth.speak(speech);
+			isSpeaking = true;
+			console.log(isSpeaking);
+			var r = setInterval(function () {
+				console.log(synth.speaking);
+				if (!synth.speaking && isSpeaking == false) clearInterval(r);
+				else if (isSpeaking == true) synth.resume();
+			}, 14000);
+		});
+
+		document.getElementById("stop").addEventListener("click", () => {
+			console.log("Stopped");
+			synth.pause();
+			synth.cancel();
+			clearInterval(r);
+			isSpeaking = true;
+		});
+
+		document.getElementById("toggle").addEventListener("click", () => {
+			if (isSpeaking == false) {
+				isSpeaking = true;
+				synth.resume();
+				console.log(isSpeaking);
+			} else {
+				isSpeaking = false;
+				synth.pause();
+				console.log(isSpeaking);
+			}
+		});
 
 	</script>
 </body>
