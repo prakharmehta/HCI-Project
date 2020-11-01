@@ -2,15 +2,26 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-nft.js">
-    </script>
-
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <!-- we import arjs version without NFT but with marker + location based support -->
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 </head>
 
-<body>
-
+<body style="margin : 0px; overflow: hidden;">
+    <a-scene embedded arjs renderer="logarithmicDepthBuffer: true;" vr-mode-ui="enabled: false" gesture-detector
+        id="scene">
+        <a-assets>
+            <a-asset-item id="tree-obj" src="/models/Christ_Rio.obj"></a-asset-item>
+            <a-asset-item id="tree-mtl" src="/models/12331_Christ_Rio_V1_L1.mtl"></a-asset-item>
+        </a-assets>
+        <a-entity camera></a-entity>
+        <a-marker preset="hiro">
+            <a-entity obj-model="obj: #tree-obj; mtl: #tree-mtl" scale="0.0005 0.0005 0.0005" rotation="270 270 0">
+            </a-entity>
+        </a-marker>
+        </a-entity>
+    </a-scene>
 </body>
 
 </html>

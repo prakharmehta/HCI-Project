@@ -1,0 +1,1 @@
+web:source env/bin/activate && node index.js
