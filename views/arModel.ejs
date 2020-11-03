@@ -6,14 +6,22 @@
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <!-- we import arjs version without NFT but with marker + location based support -->
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
 </head>
 
 <body style="margin : 0px; overflow: hidden;">
+    <% models = [{
+        name: "christ the redeemer",
+        obj: "Christ_Rio.obj",
+        mtl: "12331_Christ_Rio_V1_L1.mtl"
+    }]
+
+    if(models[0].name == model.toLowerCase()) { %>
     <a-scene embedded arjs renderer="logarithmicDepthBuffer: true;" vr-mode-ui="enabled: false" gesture-detector
         id="scene">
         <a-assets>
-            <a-asset-item id="tree-obj" src="/models/Christ_Rio.obj"></a-asset-item>
-            <a-asset-item id="tree-mtl" src="/models/12331_Christ_Rio_V1_L1.mtl"></a-asset-item>
+            <a-asset-item id="tree-obj" src="/models/<%= models[0].obj %>"></a-asset-item>
+            <a-asset-item id="tree-mtl" src="/models/<%= models[0].mtl %>"></a-asset-item>
         </a-assets>
         <a-entity camera></a-entity>
         <a-marker preset="hiro">
@@ -22,6 +30,45 @@
         </a-marker>
         </a-entity>
     </a-scene>
+    <script>
+        sceneEl = document.getElementById('scene');
+        let isMarkerVisible;
+        sceneEl.addEventListener("markerFound", (e) => {
+            isMarkerVisible = true;
+        });
+
+        sceneEl.addEventListener("markerLost", (e) => {
+            isMarkerVisible = false;
+        });
+        sceneEl.addEventListener("onefingermove", handleRotation);
+        sceneEl.addEventListener("twofingermove", handleScale);
+        function handleRotation(event) {
+            if (isMarkerVisible) {
+                el.object3D.rotation.y +=
+                    event.detail.positionChange.x * rotationFactor;
+
+                el.object3D.rotation.x +=
+                    event.detail.positionChange.y * rotationFactor;
+            }
+        }
+        function handleScale(event) {
+            if (isMarkerVisible) {
+                this.scaleFactor *=
+                    1 + event.detail.spreadChange / event.detail.startSpread;
+
+                this.scaleFactor = Math.min(
+                    Math.max(this.scaleFactor, this.data.minScale),
+                    this.data.maxScale
+                );
+
+                el.object3D.scale.x = scaleFactor * initialScale.x;
+                el.object3D.scale.y = scaleFactor * initialScale.y;
+                el.object3D.scale.z = scaleFactor * initialScale.z;
+            }
+        }
+    </script>
+    <% }
+    %>
 </body>
 
 </html>

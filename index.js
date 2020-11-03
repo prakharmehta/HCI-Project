@@ -70,8 +70,10 @@ app.post("/tts", urlencodedParser, async (req, res) => {
   });
 });
 
-app.get('/arModel', (req, res) => {
-  res.render("arModel");
+app.post('/arModel', urlencodedParser, (req, res) => {
+  console.log(req.body.monument_ar);
+  monument = req.body.monument_ar;
+  res.render("arModel", { model: monument });
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
