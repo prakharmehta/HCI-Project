@@ -5,7 +5,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
 // app.set('views','./views');
 app.set("view engine", "ejs");
