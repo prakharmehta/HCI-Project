@@ -12,7 +12,7 @@
 	<div class="container">
 		<h2>Text to Speech</h2>
 		<div>
-			<p id="text-to-speech" class="flow-text"><%= textToBeSummarized %></p>
+			<p id="text-to-speech" class="flow-text" style="text-align: justify;"><%= textToBeSummarized %></p>
 		</div>
 		<div class="row">
 			<div class="col s3"><button class="waves-effect waves-light btn" type="button" id="speak">Speak</button>
@@ -22,16 +22,15 @@
 					<i class="material-icons right">pause</i></button></div>
 			<div class="col s3"><button class="waves-effect waves-light btn red lighten-1" id="stop">Stop</button></div>
 			<div class="col s3">
-				<form action="/arModel" method="GET">
-					<button class="waves-effect waves-light btn purple lighten-1" id="ar-model">AR
-						Model</button>
+				<form action="/info" method="GET">
+					<button class="waves-effect waves-light btn blue lighten-1" id="more_info">More info</button>
 				</form>
 			</div>
 		</div>
 
 		<br />
 		<!-- <div><small><b>NOTE:</b> Enter text and click on speak button.</small></div> -->
-		<span>Language: <span id="language-code"><%= languageCode %></span></span>
+		<blockquote id="language-code">Language: <%= languageCode %></blockquote>
 	</div>
 
 	<script>

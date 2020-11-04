@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+
+    <div class="row center-align" style="width: 800px;">
+        <h1>Know more</h1>
+        <div class="row">
+            <img src="img/tajmahal.jpg" usemap="#fieldmap" style="width: 800px; height: auto;"
+                onmousemove="showCoords(event)">
+        </div>
+        <div class="row left-align">
+            <blockquote>
+                Hover over some region in the image to know more about it.
+            </blockquote>
+        </div>
+        <map name="fieldmap">
+            <area shape="circle" coords="400,200,40" alt="dome" onmouseenter="ans(this.id)" id="1">
+            <area shape="circle" coords="100,122,40" alt="pillar" onmouseenter="ans(this.id)" id="2">
+            <area shape="circle" coords="700,122,40" alt="pillar" onmouseenter="ans(this.id)" id="5">
+            <area shape="circle" coords="400,450,40" alt="garden" onmouseenter="ans(this.id)" id="3">
+            <area shape="circle" coords="400,350,40" alt="gate" onmouseenter="ans(this.id)" id="4">
+        </map>
+        <div class="row center-align" style="width: 800px;">
+            <div class="ans" id="demo" style="text-align: justify;">
+
+            </div>
+        </div>
+
+    </div>
+    <script>
+        function ans(id1) {
+            if (id1 == "1")
+                document.getElementById('demo').innerHTML = 'The dome of the Taj Mahal is of Persian style. It was the Persians who developed the technique of tulip, the architectural element that allows moving from walls in elevation on a square plane to the circular plane of a dome. The initial plan must be perfectly square. On the walls are mounted arches very high, shaped ogive, then mounted others that cross these first 4 arches. This interlace of 8 arches, if it is realized in a regular way, forms a perfect octagon of 8 ogive points, which forms the bases of the circle of the dome.';
+            if (id1 == "2")
+                document.getElementById('demo').innerHTML = ' The four pillars around the main dome were built to slant away from the dome slightly. This was done to help protect the tomb if the pillars ever collapsed.'
+            if (id1 == "5")
+                document.getElementById('demo').innerHTML = ' The four pillars around the main dome were built to slant away from the dome slightly. This was done to help protect the tomb if the pillars ever collapsed.'
+            if (id1 == "3")
+                document.getElementById('demo').innerHTML = 'The Garden of Heaven concept was imported from Persia by the Mughals in the form of Timurid Garden. They were the first architectural expression of the new empire created on the Indian subcontinent, and they fulfilled various functions with strong symbolic meanings.The symbolism of these gardens is derived from mystical Islamic texts describing paradise as a garden filled with abundant trees, flowers and plants, water playing a key role: In Paradise (according to Islam) four rivers flow from from a central point, on the mountain. In their ideal form, they are arranged in a square divided into four equal parts. These rivers are often represented in the Mughal gardens (charbagh) by shallow channels separating the garden in four parts and whose perspectives follow the cardinal points. The canals are a representation of the promise of water, milk, wine and honey. In the center of these gardens, at the intersection of the divisions, there is the main pavilion or, in the case of the Taj Mahal, a basin marking the holiest place of the place. In the very special case of the Taj Mahal this pavilion has been postponed in the garden and replaced by a pond. The tombs of Humayun, Akbar and Jahangir, the previous Mughal emperors, follow this pattern. The cross-shaped axial garden also finds precedents within Southeast Asia dating back to the fifth century in which the Royal Gardens of Sigiriya (now Sri Lanka) have been arranged in a similar way.'
+            if (id1 == "4")
+                document.getElementById('demo').innerHTML = ' It is the main entrance to the Taj Mahal and this gate faces towards Green Shahjahan Garden, Agra cantonment and Agra city.There is a red sand stone edifice outside this gate which is known as Fatehpur Begum another wife of Shah Jahan. It is erected on a beautiful terrace. The count yard is paved and its measurements are 130 feet and some 175 to 200 persons can perform Namaz in here.'
+
+        }
+    </script>
+
+</body>
+
+</html>
