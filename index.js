@@ -5,7 +5,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // app.set('views','./views');
 app.set("view engine", "ejs");
@@ -70,8 +70,10 @@ app.post("/tts", urlencodedParser, async (req, res) => {
   });
 });
 
-app.get('/arModel', (req, res) => {
-  res.render("arModel");
+app.post('/arModel', urlencodedParser, (req, res) => {
+  console.log(req.body.monument_ar);
+  monument = req.body.monument_ar;
+  res.render("arModel", { model: monument });
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

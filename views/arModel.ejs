@@ -2,15 +2,38 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-nft.js">
-    </script>
-
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <!-- we import arjs version without NFT but with marker + location based support -->
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
 </head>
 
-<body>
+<body style="margin : 0px; overflow: hidden;">
+    <% models = [{
+        name: "christ the redeemer",
+        obj: "Christ_Rio.obj",
+        mtl: "12331_Christ_Rio_V1_L1.mtl"
+    }]
 
+    if(models[0].name == model.toLowerCase()) { %>
+    <a-scene embedded arjs renderer="logarithmicDepthBuffer: true;" vr-mode-ui="enabled: false" gesture-detector
+        id="scene">
+        <a-assets>
+            <a-asset-item id="tree-obj" src="/models/<%= models[0].obj %>"></a-asset-item>
+            <a-asset-item id="tree-mtl" src="/models/<%= models[0].mtl %>"></a-asset-item>
+        </a-assets>
+        <a-entity camera></a-entity>
+        <a-marker preset="hiro" raycaster="objects: .clickable" emitevents="true"
+            cursor="fuse: false; rayOrigin: mouse;" id="markerA">
+            <a-entity id="bowser-model" obj-model="obj: #tree-obj; mtl: #tree-mtl" scale="0.0005 0.0005 0.0005"
+                rotation="270 270 0" class="clickable" gesture-handler>
+            </a-entity>
+        </a-marker>
+        </a-entity>
+    </a-scene>
+    <% }
+    %>
 </body>
 
 </html>
