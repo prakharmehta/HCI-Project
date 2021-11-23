@@ -33,7 +33,7 @@ app.post("/tts", urlencodedParser, async (req, res) => {
 
   let dataToSend;
   // spawn new child process to call the python script
-  const python2 = await spawn("python", [
+  const python2 = spawn("python", [
     "./public/scripts/text_summarization.py",
     textToSummarize
   ]);
@@ -47,22 +47,22 @@ app.post("/tts", urlencodedParser, async (req, res) => {
 
     console.log(dataToSend);
 
-    const python1 = await spawn("python", [
+    const python1 = spawn("python", [
       "./public/scripts/textTranslation.py",
       dataToSend, req.body.languages.split("-")[0]
     ]);
 
     let translatedText
     // let translatedTextURI = "./models/translationOutput/translatedText.txt"
-    await python1.stdout.on("data", (data) => {
+    python1.stdout.on("data", (data) => {
       console.log("Pipe data from python script ...");
       translatedText = data.toString();
-  
+
       res.render("textToSpeech", {
         textToBeSummarized: translatedText,
         languageCode: req.body.languages
       });
-  });
+    });
 
   
   })
@@ -74,6 +74,7 @@ app.post("/tts", urlencodedParser, async (req, res) => {
   python2.on("close", (code) => {
     console.log(`child process close all stdio with code ${code}`);
   });
+  
 });
 
 app.post('/arModel', urlencodedParser, (req, res) => {
