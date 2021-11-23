@@ -1,7 +1,9 @@
-from googletrans import Translator
+from google_trans_new import google_translator  
+  
+translator = google_translator()
 import sys
 
-translator = Translator(service_urls=['translate.googleapis.com'])
+translator = Translator()
 # outputFile = open(sys.argv[1])
 data = sys.argv[1]
 translatedOutput = translator.translate(data, dest=sys.argv[2])
