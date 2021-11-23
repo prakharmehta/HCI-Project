@@ -94,7 +94,7 @@ f.close()
 
 
 # remove punctuations, numbers and special characters
-clean_sentences = pd.Series(s).str.replace("[^a-zA-Z]", " ")
+clean_sentences = pd.Series(s).astype(str).str.replace("[^a-zA-Z]", " ")
 
 # make alphabets lowercase
 clean_sentences = [s.lower() for s in clean_sentences]
