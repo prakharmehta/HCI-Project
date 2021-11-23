@@ -63,6 +63,7 @@ app.post("/tts", urlencodedParser, async (req, res) => {
         languageCode: req.body.languages
       });
     });
+    python1.stderr.on("data", (data) => console.log(data.toString()));
 
   
   })
