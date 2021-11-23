@@ -1,9 +1,9 @@
 from google_trans_new import google_translator  
-  
-translator = google_translator()
 import sys
 
-translator = Translator()
+# translator = Translator()
+  
+translator = google_translator()
 # outputFile = open(sys.argv[1])
 data = sys.argv[1]
 translatedOutput = translator.translate(data, dest=sys.argv[2])
