@@ -57,7 +57,7 @@ app.post("/tts", urlencodedParser, async (req, res) => {
     python1.stdout.on("data", (data) => {
       console.log("Pipe data from python script ...");
       translatedText = data.toString();
-
+      console.log(translatedText);
       res.render("textToSpeech", {
         textToBeSummarized: translatedText,
         languageCode: req.body.languages
